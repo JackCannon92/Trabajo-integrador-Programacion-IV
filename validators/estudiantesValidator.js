@@ -1,32 +1,34 @@
-// Backend/validators/estudiantesValidator.js
+function validarAlta(req, res, next) {
+    // Si req.body no está procesado por Express, evitamos el crash
+    if (!req.body) {
+        return res.status(400).json({ error: 'No se recibieron datos en el body.' });
+    }
 
-const validarDatosEstudiante = (req, res, next) => {
-  const { documento, apellido, nombres, email } = req.body;
+    const { documento, apellido, nombres, email, fecha_nacimiento, id_usuario_modificacion } = req.body;
 
-  const dniRegex = /^\d{1,8}$/;
-  if (!documento || !dniRegex.test(documento.toString()) || Number(documento) < 1) {
-    return res.status(400).json({ error: 'El documento debe ser un número entero entre 1 y 99999999, sin puntos ni comas.' });
-  }
+    // Tus expresiones regulares
+    const dniRegex = /^\d{1,8}$/;
+    const textoRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
 
-  // 2. Validar Apellido y Nombres: Solo letras (incluyendo acentos/ñ) y espacios
-  const letrasEspaciosRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+    if (!documento || !dniRegex.test(documento) || parseInt(documento) <= 0) {
+        return res.status(400).json({ error: 'El DNI debe ser un número entero válido de hasta 8 dígitos sin puntos ni comas.' });
+    }
 
-  if (!apellido || apellido.trim() === '' || !letrasEspaciosRegex.test(apellido)) {
-    return res.status(400).json({ error: 'El apellido es obligatorio y solo debe contener letras y espacios (ej: Ruiz Dias).' });
-  }
+    if (!apellido || !textoRegex.test(apellido) || !nombres || !textoRegex.test(nombres)) {
+        return res.status(400).json({ error: 'El apellido y nombre solo pueden contener letras y espacios.' });
+    }
 
-  if (!nombres || nombres.trim() === '' || !letrasEspaciosRegex.test(nombres)) {
-    return res.status(400).json({ error: 'Los nombres son obligatorios y solo deben contener letras y espacios (ej: Juan Manuel).' });
-  }
+    if (!email || !email.includes('@')) {
+        return res.status(400).json({ error: 'El email no es válido.' });
+    }
 
-  if (!email || !email.includes('@') || !email.endsWith('.com')) {
-    return res.status(400).json({ error: 'Debe ingresar un email válido que termine estrictamente en .com' });
-  }
+    if (!fecha_nacimiento || !id_usuario_modificacion) {
+        return res.status(400).json({ error: 'Faltan campos obligatorios.' });
+    }
 
-  // Si pasa todas las pruebas, la petición sigue su viaje
-  next();
-};
+    next();
+}
 
 module.exports = {
-  validarDatosEstudiante
+    validarAlta
 };

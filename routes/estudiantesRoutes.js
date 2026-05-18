@@ -1,28 +1,28 @@
-// Backend/routes/estudiantesRoutes.js
-
 const express = require('express');
 const router = express.Router();
 
-// Importamos el controlador y el NUEVO validador
+// Importamos las capas superiores (asegurate de que los archivos se llamen así en singular)
 const estudiantesController = require('../controllers/estudiantesController');
 const estudiantesValidator = require('../validators/estudiantesValidator');
 
-// 1. BROWSE
+// 1. BROWSE (Obtener todos)
 router.get('/', estudiantesController.obtenerTodos);
 
-// 2. READ
+// 2. READ (Buscar por ID)
 router.get('/:id', estudiantesController.obtenerPorId);
 
-// 3. ADD 
-router.post('/', estudiantesValidator.validarDatosEstudiante, estudiantesController.crear);
+// 3. ADD (Crear estudiante) 
+// ¡Acá está tu línea 14! Controlá que estudiantesValidator exporte 'validarAlta' 
+// y que estudiantesController exporte 'crearEstudiante'.
+router.post('/', estudiantesValidator.validarAlta, estudiantesController.crearEstudiante);
 
-// 4. EDIT
-router.put('/:id', estudiantesValidator.validarDatosEstudiante, estudiantesController.actualizar);
+// 4. EDIT (Modificar)
+router.put('/:id', estudiantesValidator.validarAlta, estudiantesController.actualizarEstudiante);
 
-// 5. DELETE
-router.delete('/:id', estudiantesController.eliminar);
+// 5. DELETE (Borrado lógico)
+router.delete('/:id', estudiantesController.eliminarEstudiante);
 
-// 6. RESTAURAR
-router.patch('/:id/activar', estudiantesController.restaurar);
+// 6. RESTAURAR (Reactivar)
+router.patch('/:id/activar', estudiantesController.restaurarEstudiante);
 
 module.exports = router;
