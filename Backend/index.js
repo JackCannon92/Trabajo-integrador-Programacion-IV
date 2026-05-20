@@ -14,7 +14,8 @@ const estudiantesRoutes = require('./routes/estudiantesRoutes');
 // mándala a que la resuelva mi nuevo archivo de rutas"
 app.use('/estudiantes', estudiantesRoutes);
 
-// Iniciamos el servidor
+// Inicia el servidor y lo deja escuchando
+// peticiones en el puerto especificado
 app.listen(puerto, () => {
   console.log(` servidor prendido en http://localhost:${puerto}`);
 });

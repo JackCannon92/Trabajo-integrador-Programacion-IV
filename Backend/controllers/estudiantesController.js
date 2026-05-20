@@ -4,7 +4,7 @@ const estudiantesService = require('../services/estudiantesService');
 // IMPORTAMOS EL NUEVO DTO
 const estudiantesTransform = require('../Transforms/estudiantesTransform');
 
-// 1. BROWSE
+// Obtiene todos los estudiantes y los pasa por el transformador
 const obtenerTodos = async (_req, res) => {
   try {
     // 1. Pedimos los datos "crudos" al servicio
@@ -21,7 +21,7 @@ const obtenerTodos = async (_req, res) => {
   }
 };
 
-// 2. READ
+// Busca un estudiante específico por su ID
 const obtenerPorId = async (req, res) => {
   try {
     const { id } = req.params;
@@ -37,7 +37,7 @@ const obtenerPorId = async (req, res) => {
   }
 };
 
-// 3. ADD
+// Crea un nuevo estudiante y transforma la respuesta
 const crear = async (req, res) => {
   try {
     const nuevoEstudiante = await estudiantesService.crear(req.body);
@@ -49,7 +49,7 @@ const crear = async (req, res) => {
   }
 };
 
-// 4. EDIT
+// Actualiza los datos de un estudiante por su ID
 const actualizar = async (req, res) => {
   try {
     const { id } = req.params;
@@ -66,7 +66,7 @@ const actualizar = async (req, res) => {
   }
 };
 
-// 5. DELETE
+// Da de baja de manera lógica a un estudiante
 const eliminar = async (req, res) => {
   try {
     const { id } = req.params;
@@ -82,7 +82,7 @@ const eliminar = async (req, res) => {
   }
 };
 
-// 6. RESTAURAR
+// Reactiva el registro de un estudiante que estaba inactivo
 const restaurar = async (req, res) => {
   try {
     const { id } = req.params;
