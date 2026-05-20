@@ -269,7 +269,9 @@
             if (!respuesta.ok) throw new Error('No encontrado');
             const est = await respuesta.json();
 
-            const fechaFormateada = est.fecha_nacimiento || 'No registrada';
+            const fechaFormateada = est.fecha_nacimiento
+            ? est.fecha_nacimiento.split ('T')[0]
+            : 'No registrada';
             const estadoBadge = est.activo === 1
                 ? '<span class="badge bg-success">Activo</span>'
                 : '<span class="badge bg-danger">Inactivo</span>';
