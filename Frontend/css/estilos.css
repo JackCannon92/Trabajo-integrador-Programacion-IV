@@ -1,0 +1,32 @@
+/* Estilos generales del sistema (complementan a Bootstrap) */
+body {
+    background-color: #f8f9fa;
+}
+/* Logo de la barra */
+.navbar {
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+}
+/* Tablas */
+.table-responsive {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .05);
+}
+/* Filas dadas de baja se ven atenuadas */
+.badge-activo {
+    background-color: #198754;
+    color: white;
+    padding: 0.4em 0.6em;
+    border-radius: 4px;
+    font-size: 0.85em;
+}
+/* Tarjetas */
+.badge-baja {
+    background-color: #dc3545;
+    color: white;
+    padding: 0.4em 0.6em;
+    border-radius: 4px;
+    font-size: 0.85em;
+}
