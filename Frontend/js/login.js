@@ -3,7 +3,7 @@ const API_AUTH = 'http://localhost:3000/auth/login';
 
 // Si ya hay token, va directo a Inicio
 if (localStorage.getItem('token')) {
-  window.location.href = 'dashboard.html';
+  window.location.href = 'index.html';
 }
 
 // Referencias al DOM
@@ -60,7 +60,7 @@ formLogin.addEventListener('submit', async (e) => {
     localStorage.setItem('usuario', JSON.stringify(datos.usuario));
 
     // 👉 Primero se ve la pestaña de Inicio
-    window.location.href = 'dashboard.html';
+    window.location.href = 'index.html';
 
   } catch (error) {
     mostrarError('No se pudo conectar con el servidor. ¿Está corriendo node index.js?');
