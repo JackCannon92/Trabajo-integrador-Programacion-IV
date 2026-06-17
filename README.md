@@ -98,8 +98,9 @@ Frontend/
 
 ## Integrantes
 
-- *(completar)*
-- *(completar)*
+- Ayala, Franco;
+- Sirizzotti, Martín
+- Villagra, Agustín
 
 ---
 
